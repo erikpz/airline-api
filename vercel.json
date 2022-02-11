@@ -3,14 +3,14 @@
     "name": "airline-api",
     "builds": [
         {
-            "src": "dist/main.ts",
+            "src": "dist/main.js",
             "use": "@vercel/node"
         }
     ],
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "dist/main.ts"
+            "dest": "dist/main.js"
         }
     ]
 }
