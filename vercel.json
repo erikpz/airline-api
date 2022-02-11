@@ -1,16 +1,16 @@
 {
     "version": 2,
-    "name": "blog-server",
+    "name": "airline-api",
     "builds": [
         {
-            "src": "dist/main.js",
+            "src": "dist/main.ts",
             "use": "@vercel/node"
         }
     ],
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "dist/main.js"
+            "dest": "dist/main.ts"
         }
     ]
 }
