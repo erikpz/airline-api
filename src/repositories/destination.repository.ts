@@ -1,34 +1,34 @@
 import * as mongo from 'mongodb';
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectDb } from 'nest-mongodb';
-import { User } from 'src/interfaces/user.interface';
-import { CreateUserDto } from 'src/dto/create-user.dto';
+import { Destination } from 'src/interfaces/destination.interface';
+import { CreateDestinationDto } from 'src/dto/create-destination.dto';
 
 @Injectable()
-export class UserRepository {
+export class DestinationRepository {
   private readonly collection: mongo.Collection;
 
   constructor(@InjectDb() private readonly db: mongo.Db) {
-    this.collection = this.db.collection('users');
+    this.collection = this.db.collection('destination');
   }
 
-  async getAllUsers(): Promise<User[]> {
+  async getAllDestinations(): Promise<Destination[]> {
     try {
       const result = await this.collection.find({}).toArray();
-      return result as User[];
+      return result as any;
     } catch (e) {
       throw new InternalServerErrorException();
     }
   }
 
-  async createUser(user: CreateUserDto): Promise<User> {
+  async createDestination(user: CreateDestinationDto): Promise<Destination> {
     try {
       const result = await this.collection.insertOne(user);
       if (!result.acknowledged) {
         return null;
       }
-      const newUser = { _id: result.insertedId, ...user };
-      return newUser;
+      const newDestination = { _id: result.insertedId, ...user };
+      return newDestination;
     } catch (e) {
       throw new InternalServerErrorException();
     }
