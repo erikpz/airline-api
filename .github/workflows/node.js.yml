@@ -28,7 +28,7 @@ jobs:
     - run: yarn
     - run: yarn build
     - name: Deploy to Vercel
-      run: echo ${VERCEL_TOKEN}
+      run: echo "$VERCEL_TOKEN"
       env:
         VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
         VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
